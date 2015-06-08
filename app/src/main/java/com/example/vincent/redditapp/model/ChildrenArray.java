@@ -12,4 +12,7 @@ public class ChildrenArray {
     @SerializedName("children")
 
     private List<Children> mChildrenList;
+    public List<Children> getChildrenList(){
+        return mChildrenList;
+    }
 }

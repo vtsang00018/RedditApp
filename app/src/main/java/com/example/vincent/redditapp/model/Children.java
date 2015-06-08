@@ -9,5 +9,9 @@ public class Children {
 
     @SerializedName("data")
     private Post post;
+
+    public Post getPost(){
+        return post;
+    }
 }
 

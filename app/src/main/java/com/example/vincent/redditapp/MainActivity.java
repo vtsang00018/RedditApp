@@ -31,9 +31,9 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void onResponse(String response) {
 
-                        Listing myPost = new Gson().fromJson(response, Listing.class);
+                        Listing listing = new Gson().fromJson(response, Listing.class);
 
-                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
