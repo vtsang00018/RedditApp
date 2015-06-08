@@ -15,4 +15,16 @@ public class Post {
 
     @SerializedName("title")
     private String title;
+
+    public String getPermalink() {
+        return permalink;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

@@ -5,7 +5,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Creates the RecyclerView
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerListView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -41,9 +41,13 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void onResponse(String response) {
 
+                        // Gets the post list from the listing
                         Listing listing = new Gson().fromJson(response, Listing.class);
+                        // create an adapter -> pass in the post list
+                        RedditAdapter adapter = new RedditAdapter(listing.getPostList());
+                        // sets the adapter to the RecyclerView
+                        mRecyclerView.setAdapter(adapter);
 
-                        Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
