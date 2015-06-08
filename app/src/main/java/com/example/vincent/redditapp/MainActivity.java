@@ -2,6 +2,9 @@ package com.example.vincent.redditapp;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -17,10 +20,17 @@ public class MainActivity extends ActionBarActivity {
 
     public final String REDDIT_URL = "http://www.reddit.com/r/all.json?limit=5";
 
+    private RecyclerView mRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerListView);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         // Instantiate the RequestQueue.
         RequestQueue queue = ConnectionManager.getInstance(this);
