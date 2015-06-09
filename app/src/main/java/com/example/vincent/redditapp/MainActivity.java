@@ -11,8 +11,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.vincent.redditapp.database.RedditDAO;
 import com.example.vincent.redditapp.model.Listing;
+import com.example.vincent.redditapp.model.Post;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -43,8 +47,15 @@ public class MainActivity extends ActionBarActivity {
 
                         // Gets the post list from the listing
                         Listing listing = new Gson().fromJson(response, Listing.class);
+
+                        List<Post> mPostList = listing.getPostList();
+
                         // create an adapter -> pass in the post list
-                        RedditAdapter adapter = new RedditAdapter(listing.getPostList());
+                        RedditAdapter adapter = new RedditAdapter(mPostList);
+
+                        // Store the post list to the database
+                        RedditDAO.getInstance().storePosts(MainActivity.this, mPostList);
+
                         // sets the adapter to the RecyclerView
                         mRecyclerView.setAdapter(adapter);
 
