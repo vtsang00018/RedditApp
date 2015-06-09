@@ -16,14 +16,16 @@ public class Post {
     @SerializedName("title")
     private String title;
 
-    public String getPermalink() {
-        return permalink;
+    public Post(String permalink, String thumbnail, String title) {
+        this.permalink = permalink;
+        this.thumbnail = thumbnail;
+        this.title = title;
     }
 
+    public String getPermalink() { return permalink; }
     public String getThumbnail() {
         return thumbnail;
     }
-
     public String getTitle() {
         return title;
     }

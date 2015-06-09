@@ -3,6 +3,7 @@ package com.example.vincent.redditapp;
 import android.content.Context;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 /**
@@ -11,8 +12,10 @@ import com.android.volley.toolbox.Volley;
  * Created by Vincent on 6/8/2015.
  */
 public class ConnectionManager {
-
+    // obtain post information from url
     private static RequestQueue queue;
+    // download image information from any part of the application
+    private static ImageLoader sImageLoader;
 
     public static RequestQueue getInstance(Context context){
         // if queue doesn't exist yet, create one

@@ -63,7 +63,13 @@ public class MainActivity extends ActionBarActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                // Offline mode
+                // get the posts from the database
+                List<Post> mPostList = RedditDAO.getInstance().getPostsFromDB(MainActivity.this);
+                // create an adapter -> pass in the post list
+                RedditAdapter adapter = new RedditAdapter(mPostList);
+                // sets the adapter to the RecyclerView
+                mRecyclerView.setAdapter(adapter);
             }
         });
 
