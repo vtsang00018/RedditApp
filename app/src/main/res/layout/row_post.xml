@@ -12,24 +12,36 @@
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         card_view:cardCornerRadius="4dp">
 
-        <ImageView
-            android:src="@mipmap/ic_launcher"
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:id="@+id/imageView"/>
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:id="@+id/rowNetworkImage"/>
+        </RelativeLayout>
 
         <TextView
-            android:layout_marginTop="150dp"
             android:id="@+id/rowTextViewName"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="40dp"
             android:text="TEXT"
-            android:textColor="#000"
-            android:gravity="center"/>
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:background= "#33000000"/>
     </android.support.v7.widget.CardView>
-
 
 </LinearLayout>

@@ -42,11 +42,13 @@ public class RedditDAO {
             // for the posts in postList, put the data into the data table
             for (Post post : postList) {
                 boolean isInDB = false;
+                // check for duplicate posts
                 for (Post storedPosts : dbPosts){
                     if(storedPosts.getTitle().equals(post.getTitle())){
                         isInDB = true;
                     }
                 }
+                // if post isnt duplicate, add it to the database
                 if(!isInDB) {
                     ContentValues cv = new ContentValues();
                     cv.put(DatabaseContract.PostTable.TITLE, post.getTitle());

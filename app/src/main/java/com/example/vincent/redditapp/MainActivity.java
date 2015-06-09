@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,7 +20,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements RedditAdapter.MyListItemClickListener {
 
     public final String REDDIT_URL = "http://www.reddit.com/r/all.json?limit=5";
 
@@ -51,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
                         List<Post> mPostList = listing.getPostList();
 
                         // create an adapter -> pass in the post list
-                        RedditAdapter adapter = new RedditAdapter(mPostList);
+                        RedditAdapter adapter = new RedditAdapter(mPostList, MainActivity.this, MainActivity.this);
 
                         // Store the post list to the database
                         RedditDAO.getInstance().storePosts(MainActivity.this, mPostList);
@@ -67,7 +68,7 @@ public class MainActivity extends ActionBarActivity {
                 // get the posts from the database
                 List<Post> mPostList = RedditDAO.getInstance().getPostsFromDB(MainActivity.this);
                 // create an adapter -> pass in the post list
-                RedditAdapter adapter = new RedditAdapter(mPostList);
+                RedditAdapter adapter = new RedditAdapter(mPostList, MainActivity.this, MainActivity.this);
                 // sets the adapter to the RecyclerView
                 mRecyclerView.setAdapter(adapter);
             }
@@ -75,5 +76,11 @@ public class MainActivity extends ActionBarActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    @Override
+    public void onItemClick(Post itemClicked) {
+        Toast.makeText(MainActivity.this, "Item Click " + itemClicked.getTitle(), Toast.LENGTH_SHORT).show();
+
     }
 }
