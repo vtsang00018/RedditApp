@@ -1,11 +1,12 @@
 package com.example.vincent.redditapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,6 +19,8 @@ import com.example.vincent.redditapp.model.Post;
 import com.google.gson.Gson;
 
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class MainActivity extends ActionBarActivity implements RedditAdapter.MyListItemClickListener {
@@ -80,7 +83,12 @@ public class MainActivity extends ActionBarActivity implements RedditAdapter.MyL
 
     @Override
     public void onItemClick(Post itemClicked) {
-        Toast.makeText(MainActivity.this, "Item Click " + itemClicked.getTitle(), Toast.LENGTH_SHORT).show();
-
+        Intent webIntent = new Intent(MainActivity.this, WebActivity.class);
+        webIntent.putExtra("URL", itemClicked.getPermalink());
+        startActivity(webIntent);
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

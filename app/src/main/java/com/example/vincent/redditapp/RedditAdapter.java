@@ -20,6 +20,7 @@ public class RedditAdapter extends RecyclerView.Adapter<RedditAdapter.MyViewHold
 
     List<Post> mPostList;
     Context mContext;
+    // keeps track of the context that is listening for the click
     MyListItemClickListener mListener;
 
     // The adapter will get the post list with a constructor
@@ -69,6 +70,7 @@ public class RedditAdapter extends RecyclerView.Adapter<RedditAdapter.MyViewHold
             itemView.setOnClickListener(this);
         }
 
+        // if click is found, run the onItemClick method (definied in MainActivity) on the post
         @Override
         public void onClick(View v) {
             mListener.onItemClick(mPostList.get(getPosition()));
